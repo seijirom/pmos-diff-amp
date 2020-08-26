@@ -1,0 +1,1 @@
+../parameter2/mineda2020_1_pmos.txt
