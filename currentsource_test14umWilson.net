@@ -1,0 +1,26 @@
+* Z:\home\anagix\work\YSS_PMOS\diff_amp\currentsource_test14umWilson.asc
+V1 0 N008 5
+M1 N003 N003 N001 N001 YSS_PMOS l=14u w=14u m=20
+V2 N001 0 5
+I1 N006 N008 200µ
+M2 N005 N003 N001 N001 YSS_PMOS l=14u w=14u m=20
+V3 Vout 0 5
+M3 N006 N006 N005 N001 YSS_PMOS l=14u w=14u m=40
+M4 Vout N006 N003 N001 YSS_PMOS l=14u w=14u m=40
+V4 0 N009 5
+M5 N004 N004 N002 N002 YSS_PMOS l=14u w=14u m=30
+V5 N002 0 5
+I2 N007 N009 200µ
+M6 N007 N004 N002 N002 YSS_PMOS l=14u w=14u m=30
+M8 Vout2 N007 N004 N002 YSS_PMOS l=14u w=14u m=40
+E1 Vout2 0 Vout 0 1.0
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\users\anagix\My Documents\LTspiceXVII\lib\cmp\standard.mos
+.dc V3 -5 5 20m
+.lib ../parameter2/mineda2020_1_pmos.txt
+;.op
+* Willson Current Mirror (Improved version)
+* Willson Current Mirror (Simpler version)
+.backanno
+.end

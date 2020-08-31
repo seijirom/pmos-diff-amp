@@ -1,0 +1,90 @@
+**.subckt mmm-CMoutSensitivity +VDD -VSS Iref -OUT +OUT +IN -IN +VDD -VSS Iref
+*.opin +VDD
+*.opin -VSS
+*.opin Iref
+*.opin -OUT
+*.opin +OUT
+*.opin +IN
+*.opin -IN
+*.ipin +VDD
+*.ipin -VSS
+*.ipin Iref
+Iref Iref GND 208u
+Vin-diff net5 net2 sin(0 100m 1k)
+V2 GND -VSS 5
+R5 -OUT GND 10k m=1
+R6 +OUT GND 10k m=1
+V4 +VDD GND 5
+R7 net1 net2 1 m=1
+R8 net1 net5 1 m=1
+*  C1 -  cap  IS MISSING !!!!
+*  C2 -  cap  IS MISSING !!!!
+Vin-cm net1 GND 0
+R9 +OUT -IN 100k m=1
+R10 -IN net2 100k m=1
+R11 +IN net5 100k m=1
+R12 -OUT +IN 100k m=1
+*  C3 -  cap  IS MISSING !!!!
+X1 +IN -IN -OUT +OUT +VDD -VSS net4 net3 Iref DiffAmp
+**** begin user architecture code
+
+.dc Iref 200u 220u 0.1u
+
+
+.include ../../parameter2/mineda2020_1_pmos(Aug18).txt
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  DiffAmp.sym # of pins=9
+
+.subckt DiffAmp  +IN -IN -OUT +OUT +VDD -VSS C1 C2 Iref
+*.opin -OUT
+*.opin +OUT
+*.ipin +VDD
+*.ipin -VSS
+*.ipin Iref
+*.ipin +IN
+*.ipin -IN
+*.iopin C1
+*.iopin C2
+**** begin user architecture code
+
+.include ../../parameter2/mineda2020_1_pmos(Aug18).txt
+
+**** end user architecture code
+**** begin user architecture code
+
+.ac oct 40 1 1G
+
+**** end user architecture code
+M6 Iref net1 +VDD +VDD YSS_PMOS w=280u l=14u as=3.92n ps=308u ad=3.92n pd=308u m=1
+M2 net7 Iref net1 +VDD YSS_PMOS w=84u l=14u as=1.176n ps=112u ad=1.176n pd=112u m=1
+M3 net11 +IN net7 +VDD YSS_PMOS w=200u l=10u as=2.0n ps=220u ad=2.0n pd=220u m=1
+R1 net11 -VSS 30k m=1
+R2 net12 -VSS 30k m=1
+R3 C1 -VSS 30k m=1
+R4 C2 -VSS 30k m=1
+M4 net1 net1 +VDD +VDD YSS_PMOS w=280u l=14u as=3.92n ps=308u ad=3.92n pd=308u m=1
+M5 net4 net1 +VDD +VDD YSS_PMOS w=280u l=14u as=3.92n ps=308u ad=3.92n pd=308u m=1
+M7 net8 Iref net4 +VDD YSS_PMOS w=84u l=14u as=1.176n ps=112u ad=1.176n pd=112u m=1
+M8 C1 net10 net8 +VDD YSS_PMOS w=200u l=10u as=2.0n ps=220u ad=2.0n pd=220u m=1
+M1 net12 -IN net7 +VDD YSS_PMOS w=200u l=10u as=2.0n ps=220u ad=2.0n pd=220u m=1
+M9 C2 net9 net8 +VDD YSS_PMOS w=200u l=10u as=2.0n ps=220u ad=2.0n pd=220u m=1
+M10 net2 net1 +VDD +VDD YSS_PMOS w=280u l=14u as=3.92n ps=308u ad=3.92n pd=308u m=1
+M11 net10 Iref net2 +VDD YSS_PMOS w=84u l=14u as=1.176n ps=112u ad=1.176n pd=112u m=1
+M12 -VSS net11 net10 +VDD YSS_PMOS w=200u l=10u as=2.0n ps=220u ad=2.0n pd=220u m=1
+M13 -VSS net12 net9 +VDD YSS_PMOS w=200u l=10u as=2.0n ps=220u ad=2.0n pd=220u m=1
+M14 net3 net1 +VDD +VDD YSS_PMOS w=280u l=14u as=3.92n ps=308u ad=3.92n pd=308u m=1
+M15 net9 Iref net3 +VDD YSS_PMOS w=84u l=14u as=1.176n ps=112u ad=1.176n pd=112u m=1
+M16 net5 net1 +VDD +VDD YSS_PMOS w=280u l=14u as=3.92n ps=308u ad=3.92n pd=308u m=4
+M17 +OUT Iref net5 +VDD YSS_PMOS w=84u l=14u as=1.176n ps=112u ad=1.176n pd=112u m=4
+M18 -VSS C1 +OUT +VDD YSS_PMOS w=200u l=10u as=2.0n ps=220u ad=2.0n pd=220u m=4
+M19 -VSS C2 -OUT +VDD YSS_PMOS w=200u l=10u as=2.0n ps=220u ad=2.0n pd=220u m=4
+M20 net6 net1 +VDD +VDD YSS_PMOS w=280u l=14u as=3.92n ps=308u ad=3.92n pd=308u m=4
+M21 -OUT Iref net6 +VDD YSS_PMOS w=84u l=14u as=1.176n ps=112u ad=1.176n pd=112u m=4
+*  C9 -  cap  IS MISSING !!!!
+.ends
+
+.GLOBAL GND
+.end

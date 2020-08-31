@@ -1,0 +1,25 @@
+**.subckt diffamp_test10um out- out+ Vs
+*.opin out-
+*.opin out+
+*.opin Vs
+V1 GND net4 5
+M2 out+ net3 Vs net1 YSS_PMOS w=100u l=10u as=0 ps=0 ad=0 pd=0 m=1
+V3 net2 net3 0
+M1 out- net2 Vs net1 YSS_PMOS w=100u l=10u as=0 ps=0 ad=0 pd=0 m=1
+V2 net1 GND 5
+R1 out- net4 40k m=1
+R2 out+ net4 40k m=1
+I1 net1 Vs 200u
+R3 GND net2 1 m=1
+R4 GND net3 1 m=1
+**** begin user architecture code
+
+.dc V3 -5 5 0.01
+
+
+.include ../parameter2/mineda2020_1_pmos.txt
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

@@ -1,0 +1,21 @@
+**.subckt currentsource_test14umcascode Vout
+*.opin Vout
+V1 GND net5 5
+M1 net3 net2 net1 net1 YSS_PMOS w=14u l=14u as=0 ps=0 ad=0 pd=0 m=20
+V2 net1 GND 5
+I1 net4 net5 200u
+M2 net2 net2 net1 net1 YSS_PMOS w=14u l=14u as=0 ps=0 ad=0 pd=0 m=20
+V3 Vout GND 5
+M3 net4 net4 net2 net1 YSS_PMOS w=14u l=14u as=0 ps=0 ad=0 pd=0 m=20
+M4 Vout net4 net3 net1 YSS_PMOS w=14u l=14u as=0 ps=0 ad=0 pd=0 m=20
+**** begin user architecture code
+
+.dc V3 -5.0 5.0 0.1
+
+
+.include ../parameter2/mineda2020_1_pmos.txt
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

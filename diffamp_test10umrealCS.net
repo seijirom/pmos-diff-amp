@@ -1,0 +1,23 @@
+* Z:\home\anagix\work\YSS_PMOS\diff_amp\diffamp_test10umrealCS.asc
+V1 0 N007 5
+M1 N003 N002 N001 N001 YSS_PMOS l=14u w=14u m=20
+V2 N001 0 5
+I1 N004 N007 200µ
+M2 N002 N002 N001 N001 YSS_PMOS l=14u w=14u m=20
+V3 N005 N006 5
+M3 N004 N004 N002 N001 YSS_PMOS l=14u w=14u m=20
+M4 Vs N004 N003 N001 YSS_PMOS l=14u w=14u m=20
+M5 OUT- N005 Vs N001 YSS_PMOS l=10u w=10u m=10
+M6 OUT+ N006 Vs N001 YSS_PMOS l=10u w=10u m=10
+R1 OUT- N007 40k
+R2 OUT+ N007 40k
+R3 N005 0 1
+R4 0 N006 1
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\users\anagix\My Documents\LTspiceXVII\lib\cmp\standard.mos
+.dc V3 -5.0 5.0
+.lib ../parameter2/mineda2020_1_pmos.txt
+;.op
+.backanno
+.end

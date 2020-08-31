@@ -1,0 +1,15 @@
+* Z:\home\anagix\work\YSS_PMOS\diff_amp\currentsource_test14um.tmp
+V1 0 N003 5
+M1 Vout N002 N001 N001 YSS_PMOS l=14u w=14u
+V2 N001 0 5
+I1 N002 N003 200µ
+M2 N002 N002 N001 N001 YSS_PMOS l=14u w=14u
+V3 Vout 0 5
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\users\anagix\My Documents\LTspiceXVII\lib\cmp\standard.mos
+.dc V3 -5 5
+.lib ../parameter2/mineda2020_1_pmos.txt
+;.op
+.backanno
+.end

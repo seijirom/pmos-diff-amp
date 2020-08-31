@@ -1,0 +1,30 @@
+**.subckt diffamp_test10umrealCS-Vcm-gain Vs OUT+ OUT-
+*.opin Vs
+*.opin OUT+
+*.opin OUT-
+V1 GND net8 5
+M1 net3 net2 net1 net1 YSS_PMOS w=14u l=14u as=0 ps=0 ad=0 pd=0 m=20
+V2 net1 GND 5
+I1 net4 net8 200u
+M2 net2 net2 net1 net1 YSS_PMOS w=14u l=14u as=0 ps=0 ad=0 pd=0 m=20
+V3 net6 net7 5
+M3 net4 net4 net2 net1 YSS_PMOS w=14u l=14u as=0 ps=0 ad=0 pd=0 m=20
+M4 Vs net4 net3 net1 YSS_PMOS w=14u l=14u as=0 ps=0 ad=0 pd=0 m=20
+M5 OUT- net6 Vs net1 YSS_PMOS w=10u l=10u as=0 ps=0 ad=0 pd=0 m=10
+M6 OUT+ net7 Vs net1 YSS_PMOS w=10u l=10u as=0 ps=0 ad=0 pd=0 m=10
+R1 OUT- net8 40k m=1
+R2 OUT+ net8 40k m=1
+R3 net6 net5 1 m=1
+R4 net5 net7 1 m=1
+Vicm net5 GND 2.7
+**** begin user architecture code
+
+.dc V3 -5.0 5.0 0.1
+
+
+.include ../parameter2/mineda2020_1_pmos.txt
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end
